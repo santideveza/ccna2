@@ -16,26 +16,26 @@ config t
       exec-timeout 0 0
    Int Vlan 1
      no shutdown
-	 ip add 10.__.1.2 255.255.255.0
+	 ip add 10.51.1.2 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10.__.10.2 255.255.255.0
+	 ip add 10.51.10.2 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10.__.50.2 255.255.255.0
+	 ip add 10.51.50.2 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10.__.100.2 255.255.255.0
+	 ip add 10.51.100.2 255.255.255.0
 	 description VOICEVLAN
 end
 
 !!!DAPAT 7 UNDER_SCORE ANG NA EDIT MO  ( LINE 34 to 68 PASTE TO COREBABA SWITCH )
 !@@@LeafSwitchONLY
 config t
-   hostname COREbaba-_
+   hostname COREbaba-51
    enable secret pass
    service password-encryption
    no logging console
@@ -51,22 +51,22 @@ config t
    Int Gi 0/1
      no shutdown
 	  no switchport
-	  ip add 10._._.4 255.255.255.0
+	  ip add 10.51.51.4 255.255.255.0
    Int Vlan 1
      no shutdown
-	 ip add 10._.1.4 255.255.255.0
+	 ip add 10.51.1.4 255.255.255.0
 	 description MGMTDATA
    Int Vlan 10
      no shutdown
-	 ip add 10._.10.4 255.255.255.0
+	 ip add 10.51.10.4 255.255.255.0
 	 description WIRELESS
    Int Vlan 50
      no shutdown
-	 ip add 10._.50.4 255.255.255.0
+	 ip add 10.51.50.4 255.255.255.0
 	 description IPCCTV
    Int Vlan 100
      no shutdown
-	 ip add 10._.100.4 255.255.255.0
+	 ip add 10.51.100.4 255.255.255.0
 	 description VOICEVLAN
 end
 
@@ -98,31 +98,31 @@ Int Range fa0/10-12
 !!!DAPAT 21 UNDER SCORE ANG NA EDIT MO  ( LINE 72 to 99 PASTE TO COREBABA SWITCH )
 !@@@LEAF SWITCH
 config t
-ip dhcp Excluded-add 10._.1.1 10._.1.100
-ip dhcp Excluded-add 10._.10.1 10._.10.100
-ip dhcp Excluded-add 10._.50.1 10._.50.100
-ip dhcp Excluded-add 10._.100.1 10._.100.100
+ip dhcp Excluded-add 10.51.1.1 10.51.1.100
+ip dhcp Excluded-add 10.51.10.1 10.51.10.100
+ip dhcp Excluded-add 10.51.50.1 10.51.50.100
+ip dhcp Excluded-add 10.51.100.1 10.51.100.100
 ip dhcp pool MGMTDATA
-   network 10._.1.0 255.255.255.0
-   default-router 10._.1.4
+   network 10.51.1.0 255.255.255.0
+   default-router 10.51.1.4
    domain-name MGMTDATA.COM
-   dns-server 10._.1.10
+   dns-server 10.51.1.10
 ip dhcp pool WIFIDATA
    network 10._.10.0 255.255.255.0
-   default-router 10._.10.4
+   default-router 10.51.10.4
    domain-name WIFIDATA.COM
-   dns-server 10._.1.10
+   dns-server 10.51.1.10
 ip dhcp pool IPCCTV
-   network 10._.50.0 255.255.255.0
-   default-router 10._.50.4
+   network 10.51.50.0 255.255.255.0
+   default-router 10.51.50.4
    domain-name IPCCTV.COM
-   dns-server 10._.1.10
+   dns-server 10.51.1.10
 ip dhcp pool VOICEVLAN
-   network 10._.100.0 255.255.255.0
-   default-router 10._.100.4
+   network 10.51.100.0 255.255.255.0
+   default-router 10.51.100.4
    domain-name VOICEVLAN.COM
-   dns-server 10._.1.10
-   option 150 ip 10._.100.8   
+   dns-server 10.51.1.10
+   option 150 ip 10.51.100.8   
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
@@ -171,11 +171,11 @@ Int Fa 0/7
 config t
 ip routing
 ip dhcp pool CAMERA6
-host 10._.50.6 255.255.255.0
-client-identifier ____.____.____
+host 10.51.50.6 255.255.255.0
+client-identifier 001a.070a.27ed
 ip dhcp pool CAMERA8
-host 10._.50.8 255.255.255.0
-client-identifier____.____.____
+host 10.51.50.8 255.255.255.0
+client-identifier 001a.0709.c268
 end
 show ip dhcp binding
 
@@ -185,7 +185,7 @@ CALLMANAGER EXPRESS CONFIGURATION FOR VOIP/TELEPHONY ENGINEERS
 !!cisco unified call manager Express command
 !@@@CUCM-M
 config t
-   hostname CUCM-_
+   hostname CUCM-51
    enable secret pass
    service password-encryption
    no logging console
@@ -200,22 +200,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10._.100.8 255.255.255.0 
+	 ip add 10.51.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern _00
+   destination-pattern 5100
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern _01
+   destination-pattern 5101
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern _02
+   destination-pattern 5102
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern _03
+   destination-pattern 5103
    port 0/0/3
 end
 
@@ -227,35 +227,35 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10.__.100.8 port 2000
+   ip source-address 10.51.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number __11
+  number 5111
 ephone-dn 2
-  number __22
+  number 5122
 ephone-dn 3
-  number __33
+  number 5133
 ephone-dn 4
-  number __44
+  number 5144
 ephone-dn 5
-  number __55
+  number 5155
 ephone-dn 6
-  number __66
+  number 5166
 ephone-dn 7
-  number __77
+  number 5177
 ephone-dn 8
-  number __88
+  number 5188
  ephone-dn 9
-   number __99
+   number 5199
 ephone-dn 10
- number __98
+ number 5198
 Ephone 1
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.0953
   type 8945
   button 1:8 2:7 3:6 4:5
   restart
 Ephone 2
-  Mac-address ____.____.____
+  Mac-address ccd8.c1fb.14c9
   type 8945
   button 1:4 2:3 3:2 4:1
   restart  
@@ -288,10 +288,10 @@ configure terminal
  destination-pattern 11..
  session target ipv4:10.11.100.8
  codec g711ULAW
- ! dial-peer voice 12 Voip
- ! destination-pattern 12..
- ! session target ipv4:10.12.100.8
- ! codec g711ULAW
+ dial-peer voice 12 Voip
+ destination-pattern 12..
+ session target ipv4:10.12.100.8
+ codec g711ULAW
 dial-peer voice 21 Voip
  destination-pattern 21..
  session target ipv4:10.21.100.8
@@ -316,10 +316,10 @@ dial-peer voice 42 Voip
  destination-pattern 42..
  session target ipv4:10.42.100.8
  codec g711ULAW
-dial-peer voice 51 Voip
- destination-pattern 51..
- session target ipv4:10.51.100.8
- codec g711ULAW
+! dial-peer voice 51 Voip
+! destination-pattern 51..
+! session target ipv4:10.51.100.8
+! codec g711ULAW
 dial-peer voice 52 Voip
  destination-pattern 52..
  session target ipv4:10.52.100.8
@@ -354,7 +354,7 @@ TASK3***TASK3***TASK3***
 PRIMARY EDGE ROUTER CONFIGURATION! owned by PLDT !!!
 !@@@EDGE ROUTE CONFIG
 config t
-   hostname EDGE-__
+   hostname EDGE-51
    enable secret pass
    service password-encryption
    no logging console
@@ -369,15 +369,15 @@ config t
       exec-timeout 0 0
    Int Gi 0/0/0
      description FIBEROPTIC-TO-SWITCH
-     ip add 10.__.__.1 255.255.255.0
+     ip add 10.51.51.1 255.255.255.0
 	 no shutdown
    Int Gi 0/0/1
      description PLDT-ME-WAN
-	 ip add 200.0.0.__ 255.255.255.0
+	 ip add 200.0.0.51 255.255.255.0
 	 no shutdown
    Int Loopback 0
      description VIRTUALIP-FOR-ROUTING
-	 ip add __.0.0.1 255.255.255.255
+	 ip add 51.0.0.1 255.255.255.255
  end
 
 OPEN SHORTEST PATH FIRST/OSPF CONFIG.
@@ -387,10 +387,10 @@ sirc: sh ip route connected
 @EDGE:
 config t
 router ospf 1
-router-id _.0.0.1
+router-id 51.0.0.1
 network 200.0.0.0  0.0.0.255 area 0
-network 10._._.0  0.0.0.255 area 0
-network _.0.0.1  0.0.0.0 area 0
+network 10.51.51.0  0.0.0.255 area 0
+network 51.0.0.1  0.0.0.0 area 0
 Interface gi 0/0/0
  ip ospf network point-to-point
 end
@@ -398,8 +398,8 @@ end
 @CoreBABA:
 config t
 router ospf 1
-router-id 10._._.4
-network 10._.0.0  0.0.255.255 area 0
+router-id 10.51.51.4
+network 10.51.0.0  0.0.255.255 area 0
 int gi 0/1
  ip ospf network point-to-point
 end
@@ -407,8 +407,8 @@ end
 @CUCM:
 config t
 router ospf 1
-router-id 10.__.100.8
-network 10._.100.0  0.0.0.255  area 0
+router-id 10.51.100.8
+network 10.51.100.0  0.0.0.255  area 0
 end
 
 
