@@ -417,7 +417,7 @@ end
 conf t
  ip routing 
  ip route 10.11.0.0 255.255.0.0 200.0.0.11
- NO ip route 10.__.0.0 255.255.0.0 200.0.0._
+ NO ip route 10.51.0.0 255.255.0.0 200.0.0.51
  ip route 10.21.0.0 255.255.0.0 200.0.0.21
  ip route 10.22.0.0 255.255.0.0 200.0.0.22
  ip route 10.31.0.0 255.255.0.0 200.0.0.31
@@ -442,7 +442,7 @@ Layer three/3 switch ROUTING = 300k up!!!
 !SI SWITCH ASA/DIKIT KAY EDGE PARA MAKALABAS
 conf t 
 ip routing
-ip route 0.0.0.0 0.0.0.0 10._._.1
+ip route 0.0.0.0 0.0.0.0 10.51.51.1
 end
 
 @CUCM:DEFAULT ROUTING( 0.0.0.0 0.0.0.0) FOR CUCM:
