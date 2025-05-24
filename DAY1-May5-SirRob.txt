@@ -618,10 +618,10 @@ conf t
    name 5198
 !
   voice register pool 1
-    id mac 7e62.9935.7dd9
+    id mac 3ebd.ce73.c9a1
     number 1 dn 1
     dtmf-relay sip-notify
-    username admin password pass
+    username 5199 password 5199
     codec g711ulaw
 !
   voice register pool 2
