@@ -1,5 +1,5 @@
 ---
-- name: addlooop
+- name: addloop
   hosts: ctaas
   gather_facts: no
   become: yes
