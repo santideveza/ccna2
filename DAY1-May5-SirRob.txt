@@ -1,7 +1,7 @@
 TASK1: COLLAPSED BACKBONE: BASIC LAYER3 CONFIGURATION.
 !@@@CORE SWITCH SA TAAS
 config t
-   hostname COREtaas-51
+   hostname COREtaas-11
    enable secret pass
    service password-encryption
    no logging console
@@ -98,31 +98,31 @@ Int Range fa0/10-12
 !!!DAPAT 21 UNDER SCORE ANG NA EDIT MO  ( LINE 72 to 99 PASTE TO COREBABA SWITCH )
 !@@@LEAF SWITCH
 config t
-ip dhcp Excluded-add 10.51.1.1 10.51.1.100
-ip dhcp Excluded-add 10.51.10.1 10.51.10.100
-ip dhcp Excluded-add 10.51.50.1 10.51.50.100
-ip dhcp Excluded-add 10.51.100.1 10.51.100.100
+ip dhcp Excluded-add 10.11.1.1 10.51.1.100
+ip dhcp Excluded-add 10.11.10.1 10.51.10.100
+ip dhcp Excluded-add 10.11.50.1 10.51.50.100
+ip dhcp Excluded-add 10.11.100.1 10.51.100.100
 ip dhcp pool MGMTDATA
-   network 10.51.1.0 255.255.255.0
-   default-router 10.51.1.4
+   network 10.11.1.0 255.255.255.0
+   default-router 10.11.1.4
    domain-name MGMTDATA.COM
-   dns-server 10.51.1.10
+   dns-server 10.11.1.10
 ip dhcp pool WIFIDATA
-   network 10._.10.0 255.255.255.0
-   default-router 10.51.10.4
+   network 10.11.10.0 255.255.255.0
+   default-router 10.11.10.4
    domain-name WIFIDATA.COM
-   dns-server 10.51.1.10
+   dns-server 10.11.1.10
 ip dhcp pool IPCCTV
-   network 10.51.50.0 255.255.255.0
-   default-router 10.51.50.4
+   network 10.11.50.0 255.255.255.0
+   default-router 10.11.50.4
    domain-name IPCCTV.COM
-   dns-server 10.51.1.10
+   dns-server 10.11.1.10
 ip dhcp pool VOICEVLAN
-   network 10.51.100.0 255.255.255.0
-   default-router 10.51.100.4
+   network 10.11.100.0 255.255.255.0
+   default-router 10.11.100.4
    domain-name VOICEVLAN.COM
-   dns-server 10.51.1.10
-   option 150 ip 10.51.100.8   
+   dns-server 10.11.1.10
+   option 150 ip 10.11.100.8   
    END
 
 !!CREATING AND PLACING PORTS INSIDEAVLAN:
@@ -171,10 +171,10 @@ Int Fa 0/7
 config t
 ip routing
 ip dhcp pool CAMERA6
-host 10.51.50.6 255.255.255.0
+host 10.11.50.6 255.255.255.0
 client-identifier 001a.070a.27ed
 ip dhcp pool CAMERA8
-host 10.51.50.8 255.255.255.0
+host 10.11.50.8 255.255.255.0
 client-identifier 001a.0709.c268
 end
 show ip dhcp binding
@@ -200,22 +200,22 @@ config t
       exec-timeout 0 0
    Int Fa 0/0
      no shutdown
-	 ip add 10.51.100.8 255.255.255.0 
+	 ip add 10.11.100.8 255.255.255.0 
 	 end
    
 !!!CUCM ANALOG PHONES CONFIG
 configure terminal
 dial-peer voice 1 pots
-   destination-pattern 5100
+   destination-pattern 1100
    port 0/0/0
 dial-peer voice 2 pots
-   destination-pattern 5101
+   destination-pattern 1101
    port 0/0/1
 dial-peer voice 3 pots
-   destination-pattern 5102
+   destination-pattern 1102
    port 0/0/2
 dial-peer voice 4 pots
-   destination-pattern 5103
+   destination-pattern 1103
    port 0/0/3
 end
 
@@ -227,28 +227,28 @@ telephony-service
    no auto-reg-ephone
    max-ephones 5
    max-dn 20
-   ip source-address 10.51.100.8 port 2000
+   ip source-address 10.11.100.8 port 2000
    create cnf-files
 ephone-dn 1
-  number 5111
+  number 1111
 ephone-dn 2
-  number 5122
+  number 1122
 ephone-dn 3
-  number 5133
+  number 1133
 ephone-dn 4
-  number 5144
+  number 1144
 ephone-dn 5
-  number 5155
+  number 1155
 ephone-dn 6
-  number 5166
+  number 1166
 ephone-dn 7
-  number 5177
+  number 1177
 ephone-dn 8
-  number 5188
+  number 1188
  ephone-dn 9
-   number 5199
+   number 1199
 ephone-dn 10
- number 5198
+ number 1198
 Ephone 1
   Mac-address ccd8.c1fb.0953
   type 8945
